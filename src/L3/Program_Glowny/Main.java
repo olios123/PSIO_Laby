@@ -17,7 +17,7 @@ public class Main {
 			double stopnie = (int) (-90 + (180 + 1) * rand.nextDouble()); // losowy kąt od -90° do 90°
 			double x = Math.toRadians(stopnie); // konwersja na radiany
 			double wynik = Matematyka.sin(x, n);
-			System.out.println("sin(" + stopnie + "°) = " + wynik + " | Math.sin = " + Math.sin(x));
+			System.out.println("sin(" + (int) stopnie + "°) = " + wynik + " | Math.sin = " + Math.sin(x));
 		}
 
 		// Przeprowadzanie testów dla funkcji Matematyka.cos()
@@ -27,7 +27,7 @@ public class Main {
 			double stopnie = (int) (-90 + (180 + 1) * rand.nextDouble()); // losowy kąt od -90° do 90°
 			double x = Math.toRadians(stopnie); // konwersja na radiany
 			double wynik = Matematyka.cos(x, n);
-			System.out.println("cos(" + stopnie + "°) = " + wynik + " | Math.sin = " + Math.sin(x));
+			System.out.println("cos(" + (int) stopnie + "°) = " + wynik + " | Math.sin = " + Math.sin(x));
 		}
 
 		// Przeprowadzanie testów dla funkcji Matematyka.ex()

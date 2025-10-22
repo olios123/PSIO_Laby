@@ -11,12 +11,27 @@ public class Prostokat {
 	private double posY_2;
 
 	// Dane obliczane po inicjalizacji klasy
-	public double a; // Bok a
-	public double b; // Bok b
+	private double a; // Bok a
+	private double b; // Bok b
 
 	// Zmienna sprawdzająca czy podczas inicjalizacji nie popełniono błędu wprowadzania danych
 	private boolean error = false;
 
+	/**
+	 * Inicjalizacja klasy Prostokat za pomocą konstruktora domyślnego.
+	 * Dla przykładu przyjmujemy sobie prostokąt 2 x 3
+	 */
+	public Prostokat()
+	{
+		// Zaczynamy w punkcie 2 x 3
+		this.posX_1 = 0;
+		this.posX_2 = 0;
+		this.posY_1 = 2;
+		this.posY_2 = 3;
+
+		this.a = 2;
+		this.b = 3;
+	}
 	/**
 	 * Inicjalizacja klasy Prostokat za pomocą konstruktora.
 	 * Wymagane podanie jest przeciwległych wierzchołków prostokąta.
@@ -71,19 +86,33 @@ public class Prostokat {
 		this.b = b;
 
 		// Sprawdzanie poprawności wprowadzonych danych
-		if (a == 0 || b == 0)
+		if (a <= 0 || b <= 0)
 		{
-			System.out.println("Błąd inicjalizacji: Żaden z boków nie może być równy 0!");
+			System.out.println("Błąd inicjalizacji: Żaden z boków nie może być równy lub mniejszy od 0!");
 			error = true;
 		}
 	}
 
+	// ----------------------------------
+	//      Metody pobierania danych
+	// ----------------------------------
+	public double getA() {
+		return a;
+	}
+	public double getB() {
+		return b;
+	}
+
+
+	// ----------------------------------
+	//    Metody operujące na danych
+	// ----------------------------------
 
 	/**
 	 * Obliczanie pola prostokąta na podstawie jego wymiarów.
 	 * @return pole prostokąta
 	 */
-	public double Pole()
+	public double pole()
 	{
 		if (error) return Double.NaN;
 		return a * b;
@@ -94,7 +123,7 @@ public class Prostokat {
 	 * Obliczanie obwodu prostokąta na podstawie jego wymiarów.
 	 * @return obwód prostokąta
 	 */
-	public double Obwod()
+	public double obwod()
 	{
 		if (error) return Double.NaN;
 		return a * 2 + b * 2;
@@ -105,7 +134,7 @@ public class Prostokat {
 	 * Obliczanie długości przekątnej prostokąta na podstawie jego wymiarów.
 	 * @return przekątna prostokąta
 	 */
-	public double Przekatna()
+	public double przekatna()
 	{
 		if (error) return Double.NaN;
 		return Math.sqrt(a * a + b * b);
