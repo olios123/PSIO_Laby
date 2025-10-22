@@ -4,34 +4,64 @@ public class Matematyka {
 
 	/**
 	 * Obliczanie sin(x) na podstawie szeregu Taylora
-	 * @param x
-	 * @param n
+	 * @param x - radiany
+	 * @param n - przyjeta dokładność obliczeń
 	 * @return
 	 */
 	public static double sin(double x, int n)
 	{
+		// Suma wyrażenia
 		double sum = x;
 
-		double top = x * x * x;
-		double bottom = 6; // 3!
+		double top = x; // Licznik dzielenia (potęgi)
+		double bottom = 1; // Mianownik dzielenia (silnie)
+		int znak = -1; // Znak +/-
 
+		// Obliczanie sin(x) na podstawie dokładności n
 		for (int i = 1; i <= n; i++)
 		{
-			top *= x * x;
-			bottom *= i * i;
+			top = top * x * x; // Potęga
+			bottom = bottom * (2 * i) * (2 * i + 1);
 
-			System.out.println(i);
-			
-			if (i % 2 == 0) sum += top / bottom;
-			else sum -= top / bottom;
+			// Suma
+			sum += znak * (top / bottom);
+
+			// Zmiana znaku na przeciwny
+			znak *= -1;
 		}
 
 		return sum;
 	}
 
-	public static double cos(double x)
+	/**
+	 * Obliczanie cos(x) na podstawie szeregu Taylora
+	 * @param x - radiany
+	 * @param n - przyjeta dokładność obliczeń
+	 * @return
+	 */
+	public static double cos(double x, int n)
 	{
-		return Double.NaN;
+		// Suma wyrażenia
+		double sum = 1;
+
+		double top = 1; // Licznik dzielenia (potęgi)
+		double bottom = 1; // Mianownik dzielenia (silnie)
+		int znak = -1; // Znak +/-
+
+		// Obliczanie cos(x) na podstawie dokładności n
+		for (int i = 1; i <= n; i++)
+		{
+			top = top * x * x; // Potęga
+			bottom = bottom * (2 * i - 1) * (2 * i);
+
+			// Suma
+			sum += znak * (top / bottom);
+
+			// Zmiana znaku na przeciwny
+			znak *= -1;
+		}
+
+		return sum;
 	}
 
 	/**
