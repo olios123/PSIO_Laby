@@ -83,16 +83,7 @@ public class Data {
 	// Checking if provided year is leaped
 	public boolean isLeapYear()
 	{
-		if (this.year % 4 == 0)
-		{
-			if (this.year % 100 == 0)
-			{
-				if  (this.year % 400 == 0) return true;
-				return false;
-			}
-			return false;
-		}
-		return false;
+		return this.year % 4 == 0 && (this.year % 100 != 0 || this.year % 400 == 0);
 	}
 
 	// Checking if provided date is correct
