@@ -73,6 +73,10 @@ public class Saper {
 		plansza(saper);
 	}
 
+	/**
+	 * Wypisywanie każdego elementu tablicy do konsoli
+	 * @param list
+	 */
 	public static void plansza(String[][] list)
 	{
 		for (int i = 0; i < list.length; i++)
