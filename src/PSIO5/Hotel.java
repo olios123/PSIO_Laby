@@ -22,15 +22,19 @@ public class Hotel {
 			if (pokoj.getNumerPokoju() == numerPokoju)
 			{
 				if (pokoj.getOsoba() != null)
+				{
 					System.out.println("Ten pokój jest już wynajęty!");
+					return;
+				}
+				else
+				{
+					pokoj.setOsoba(osoba);
+					System.out.println("Wynajęto pokój nr " + numerPokoju);
+					return;
+				}
 			}
-			else
-			{
-				pokoj.setOsoba(osoba);
-				System.out.println("Wynajęto pokój nr " + numerPokoju);
-			}
-
 		}
+		System.out.println("Nie znaleziono pokoju o podanym numerze!");
 	}
 
 	// Zwolnij pokój
@@ -40,8 +44,15 @@ public class Hotel {
 		{
 			if (pokoj.getNumerPokoju() == numerPokoju)
 			{
-				pokoj.setOsoba(null);
-				System.out.println("Zwolniono pokój nr " + numerPokoju);
+				if (pokoj.getOsoba() == null)
+				{
+					System.out.println("Ten pokój jest pusty!");
+				}
+				else
+				{
+					pokoj.setOsoba(null);
+					System.out.println("Zwolniono pokój nr " + numerPokoju);
+				}
 			}
 		}
 	}
@@ -76,13 +87,17 @@ public class Hotel {
 	// Zwolnij wszystkie pokoje wynajmowane przez osobę
 	public void zwolnijWszystkiePokoje(Osoba osoba)
 	{
+		int zwolnionePokoje = 0;
 		for (Pokoj pokoj : pokoje)
 		{
 			if (pokoj.getOsoba().equals(osoba))
 			{
 				pokoj.setOsoba(null);
+				zwolnionePokoje++;
 				System.out.println("Zwolniono pokój nr " + pokoj.getNumerPokoju());
 			}
 		}
+
+		System.out.println("Zwolniono " + zwolnionePokoje + " pokoji");
 	}
 }
