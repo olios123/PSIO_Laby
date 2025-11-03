@@ -1,5 +1,7 @@
 package PSIO5;
 
+import java.util.Objects;
+
 public class Osoba {
 	private String imie;
 	private String nazwisko;
