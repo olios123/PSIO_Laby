@@ -5,6 +5,11 @@ public class Pokoj {
 	private Osoba osoba; // Jeżeli osoba == null to pokój nie jest wynajęty
 
 	// Konstruktor
+	public Pokoj(int numerPokoju)
+	{
+		this.numerPokoju = numerPokoju;
+		this.osoba = null;
+	}
 	public Pokoj(int numerPokoju, Osoba osoba) {
 		this.numerPokoju = numerPokoju;
 		this.osoba = osoba;
