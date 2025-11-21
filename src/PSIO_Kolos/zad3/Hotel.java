@@ -1,5 +1,8 @@
 package PSIO_Kolos.zad3;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Hotel {
 	public Pokoj[] rooms;
 
@@ -42,5 +45,36 @@ public class Hotel {
 		}
 		System.out.println("Nie znaleziono pokoju opodanym numerze!");
 	}
+
+	public int[] whatRoomRentsPerson(Osoba osoba) {
+		List<Integer> roomNumbers = new ArrayList<>();
+
+		for (Pokoj room : rooms) {
+			if (room.getClient().equals(osoba)) {
+				roomNumbers.add(room.getNumber());
+			}
+		}
+
+		int[] roomsArray = new int[roomNumbers.size()];
+		for (int i = 0; i < roomNumbers.size(); i++)
+			roomsArray[i] = roomNumbers.get(i);
+
+		return roomsArray;
+	}
+
+	public void releaseRentedRoom(Osoba osoba) {
+		int rentedRooms = 0;
+		for (Pokoj room : rooms) {
+			if (room.getClient().equals(osoba)) {
+				room.setClient(null);
+				System.out.println("Zwolniono pokój nr: " + room.getNumber());
+				rentedRooms++;
+			}
+		}
+		System.out.println("Zwolniono " + rentedRooms + " pokoi.");
+	}
+
+
+
 
 }

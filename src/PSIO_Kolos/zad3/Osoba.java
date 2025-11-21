@@ -27,9 +27,9 @@ public class Osoba {
 	public String toString() {
 		return name + " " + surname;
 	}
-	public boolean equals(Osoba osoba1, Osoba osoba2) {
-		if (osoba1.getName().equals(osoba2.getName()) &&
-			osoba1.getSurname().equals(osoba2.getSurname())) return true;
+	public boolean equals(Osoba osoba) {
+		if (this.getName().equals(osoba.getName()) &&
+			this.getSurname().equals(osoba.getSurname())) return true;
 		return false;
 	}
 
