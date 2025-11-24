@@ -1,4 +1,4 @@
-package L7.z.classes;
+package L7.zad2.classes;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,8 +7,8 @@ public class Student {
 	private String name;
 	private String surname;
 	private String university;
-	private String field; // kierunek
-	private String id;    // nr albumu
+	private String field;
+	private String id;
 	private List<Semester> semesters;
 
 	public Student(String name, String surname, String university, String field, String id) {
@@ -24,7 +24,6 @@ public class Student {
 		this.semesters.add(semester);
 	}
 
-	// Helper do pobierania konkretnego semestru
 	public Semester getSemester(int semesterNr) {
 		for (Semester s : semesters) {
 			if (s.getSemesterNr() == semesterNr) {
