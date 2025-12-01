@@ -20,4 +20,5 @@ public class Robotnik extends Pracownik {
 		}
 		return stawkaGodzinowa * liczbaGodzin;
 	}
+
 }
