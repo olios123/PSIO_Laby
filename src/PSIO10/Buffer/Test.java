@@ -12,6 +12,7 @@ public class Test {
 		try {
 			while ((line = bf.readLine()) != null) {
 				System.out.println(line);
+
 			}
 		}
 		catch (IOException e)
