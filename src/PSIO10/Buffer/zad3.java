@@ -31,6 +31,7 @@ public class zad3 {
 				}
 				l++;
 			}
+			br.close();
 			for (int i = 0; i < l; i++) {
 				System.out.println("Suma dla linii " + (i + 1) + ": " + sum[i] + " | Ilość liczb: " + count[i]);
 			}

@@ -34,7 +34,7 @@ public class zad4 {
 				}
 				line++;
 			}
-
+			br.close();
 			for (int i = 0; i < line; i++) {
 				System.out.println("Linia " + (i + 1) + ": Suma liczb = " + sum[i] + " | Ilość wyrazów = " + count[i]);
 			}

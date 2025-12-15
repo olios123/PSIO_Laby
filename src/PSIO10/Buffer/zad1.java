@@ -20,6 +20,7 @@ public class zad1 {
 				}
 				list.add(line);
 			}
+			br.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

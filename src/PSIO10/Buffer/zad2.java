@@ -24,6 +24,7 @@ public class zad2 {
 					System.out.println("Nieprawidłowa liczba, spróbuj ponownie.");
 				}
 			}
+			br.close();
 			System.out.println("Suma wprowadzonych liczb: " + sum);
 		} catch (Exception e) {
 			e.printStackTrace();
