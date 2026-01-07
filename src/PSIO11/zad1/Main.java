@@ -20,7 +20,7 @@ public class Main {
         try {
             analyzeFileBuffered(filePath, copyFilePath, charToCount);
             System.out.println("--------------------");
-//            analyzeFileScanner(filePath, copyFilePath, charToCount);
+            analyzeFileScanner(filePath, copyFilePath, charToCount);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -28,7 +28,7 @@ public class Main {
 
     private static void analyzeFileBuffered(String path, String destination, String selectedChar) throws IOException {
         File file = new File("./src/" + path);
-        File destinationFile = new File("./src/" + destination);
+        File destinationFile = new File("./src/buffered-" + destination);
         destinationFile.createNewFile();
 
         BufferedWriter writer = new BufferedWriter(new FileWriter(destinationFile));
@@ -71,7 +71,7 @@ public class Main {
 
     private static void analyzeFileScanner(String path, String destination, String selectedChar) throws IOException {
         File file = new File("./src/" + path);
-        File destinationFile = new File("./src/" + destination);
+        File destinationFile = new File("./src/scanner-" + destination);
         destinationFile.createNewFile();
 
         Scanner scanner = new Scanner(file);
