@@ -98,7 +98,7 @@ public class Main {
                     }
                 }
 
-                writer.write(line + "\n");
+                writer.println(line);
 
                 words += split.length;
             }
