@@ -17,99 +17,103 @@ public class Main {
 
         System.out.println("--------------------");
 
-        try {
-            analyzeFileBuffered(filePath, copyFilePath, charToCount);
-            System.out.println("--------------------");
-            analyzeFileScanner(filePath, copyFilePath, charToCount);
+        analyzeFileBuffered(filePath, copyFilePath, charToCount);
+        System.out.println("--------------------");
+        analyzeFileScanner(filePath, copyFilePath, charToCount);
+    }
+
+    private static void analyzeFileBuffered(String path, String destination, String selectedChar) {
+        File file = new File("./src/" + path);
+        File destinationFile = new File("./src/buffered-" + destination);
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(file));
+            BufferedWriter writer = new BufferedWriter(new FileWriter(destinationFile))) {
+            destinationFile.createNewFile();
+
+            int chars = 0;
+            int whiteChars = 0;
+            int words = 0;
+            int specifiedChars = 0;
+
+            for (String line : reader.lines().toList()) {
+                String[] split = line.split("\\s+");
+
+                whiteChars += line.length() - line.replaceAll("\\s+", "").length();
+
+                for (String word : split) {
+                    String[] charSplit = word.split("");
+                    chars += charSplit.length;
+                    for (String ch : charSplit) {
+                        if (Objects.equals(ch, selectedChar)) {
+                            specifiedChars++;
+                        }
+                    }
+                }
+
+                writer.write(line);
+                writer.newLine();
+
+                words += split.length;
+            }
+
+            reader.close();
+            writer.close();
+
+            System.out.println("Chars: " + chars);
+            System.out.println("Words: " + words);
+            System.out.println("Specified char (" + selectedChar + "): " + specifiedChars);
+            System.out.println("Black chars: " + (chars - whiteChars));
+
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    private static void analyzeFileBuffered(String path, String destination, String selectedChar) throws IOException {
-        File file = new File("./src/" + path);
-        File destinationFile = new File("./src/buffered-" + destination);
-        destinationFile.createNewFile();
-
-        BufferedWriter writer = new BufferedWriter(new FileWriter(destinationFile));
-        BufferedReader reader = new BufferedReader(new FileReader(file));
-
-        int chars = 0;
-        int whiteChars = 0;
-        int words = 0;
-        int specifiedChars = 0;
-
-        for (String line : reader.lines().toList()) {
-            String[] split = line.split("\\s+");
-
-            whiteChars += line.length() - line.replaceAll("\\s+", "").length();
-
-            for (String word : split) {
-                String[] charSplit = word.split("");
-                chars += charSplit.length;
-                for (String ch : charSplit) {
-                    if (Objects.equals(ch, selectedChar)) {
-                        specifiedChars++;
-                    }
-                }
-            }
-
-            writer.write(line);
-            writer.newLine();
-
-            words += split.length;
-        }
-
-        reader.close();
-        writer.close();
-
-        System.out.println("Chars: " + chars);
-        System.out.println("Words: " + words);
-        System.out.println("Specified char (" + selectedChar + "): " + specifiedChars);
-        System.out.println("Black chars: " + (chars - whiteChars));
-    }
-
-    private static void analyzeFileScanner(String path, String destination, String selectedChar) throws IOException {
+    private static void analyzeFileScanner(String path, String destination, String selectedChar) {
         File file = new File("./src/" + path);
         File destinationFile = new File("./src/scanner-" + destination);
-        destinationFile.createNewFile();
 
-        Scanner scanner = new Scanner(file);
-        PrintWriter writer = new PrintWriter(new FileWriter(destinationFile));
+        try (Scanner scanner = new Scanner(file);
+             PrintWriter writer = new PrintWriter(new FileWriter(destinationFile))) {
+            destinationFile.createNewFile();
 
-        int chars = 0;
-        int whiteChars = 0;
-        int words = 0;
-        int specifiedChars = 0;
+            int chars = 0;
+            int whiteChars = 0;
+            int words = 0;
+            int specifiedChars = 0;
 
-        while (scanner.hasNextLine()) {
-            String line = scanner.nextLine();
-            String[] split = line.split("\\s+");
+            while (scanner.hasNextLine()) {
+                String line = scanner.nextLine();
+                String[] split = line.split("\\s+");
 
-            whiteChars += line.length() - line.replaceAll("\\s+", "").length();
+                whiteChars += line.length() - line.replaceAll("\\s+", "").length();
 
-            for (String word : split) {
-                String[] charSplit = word.split("");
-                chars += charSplit.length;
-                for (String ch : charSplit) {
-                    if (Objects.equals(ch, selectedChar)) {
-                        specifiedChars++;
+                for (String word : split) {
+                    String[] charSplit = word.split("");
+                    chars += charSplit.length;
+                    for (String ch : charSplit) {
+                        if (Objects.equals(ch, selectedChar)) {
+                            specifiedChars++;
+                        }
                     }
                 }
+
+                writer.write(line + "\n");
+
+                words += split.length;
             }
 
-            writer.write(line + "\n");
+            writer.close();
+            scanner.close();
 
-            words += split.length;
+            System.out.println("Chars: " + chars);
+            System.out.println("Words: " + words);
+            System.out.println("Specified char (" + selectedChar + "): " + specifiedChars);
+            System.out.println("Black chars: " + (chars - whiteChars));
+
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
-        writer.close();
-        scanner.close();
-
-        System.out.println("Chars: " + chars);
-        System.out.println("Words: " + words);
-        System.out.println("Specified char (" + selectedChar + "): " + specifiedChars);
-        System.out.println("Black chars: " + (chars - whiteChars));
     }
-
 }
