@@ -40,9 +40,9 @@ public class Main {
         int specifiedChars = 0;
 
         for (String line : reader.lines().toList()) {
-            String[] split = line.split(" ");
+            String[] split = line.split("\\s+");
 
-            whiteChars += line.length() - line.replaceAll(" ", "").length();
+            whiteChars += line.length() - line.replaceAll("\\s+", "").length();
 
             for (String word : split) {
                 String[] charSplit = word.split("");
@@ -84,9 +84,9 @@ public class Main {
 
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
-            String[] split = line.split(" ");
+            String[] split = line.split("\\s+");
 
-            whiteChars += line.length() - line.replaceAll(" ", "").length();
+            whiteChars += line.length() - line.replaceAll("\\s+", "").length();
 
             for (String word : split) {
                 String[] charSplit = word.split("");
