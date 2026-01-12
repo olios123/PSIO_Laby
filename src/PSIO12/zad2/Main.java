@@ -39,18 +39,19 @@ public class Main {
         System.out.println("Words: " + words.size());
         System.out.println("Unique words: " + wordsCounter.size());
 
-        Map<String, Integer> keysMap =
-                wordsCounter.entrySet()
-                        .stream()
-                        .sorted(
-                                Map.Entry.<String, Integer>comparingByKey()
-                                        .thenComparing(Map.Entry.<String, Integer>comparingByValue().reversed())
-                        )
-                        .collect(
-                                LinkedHashMap::new,
-                                (m, e) -> m.put(e.getKey(), e.getValue()),
-                                LinkedHashMap::putAll
-                        );
+//        Map<String, Integer> keysMap =
+//                wordsCounter.entrySet()
+//                        .stream()
+//                        .sorted(
+//                                Map.Entry.<String, Integer>comparingByKey()
+//                                        .thenComparing(Map.Entry.<String, Integer>comparingByValue().reversed())
+//                        )
+//                        .collect(
+//                                LinkedHashMap::new,
+//                                (m, e) -> m.put(e.getKey(), e.getValue()),
+//                                LinkedHashMap::putAll
+//                        );
+        Map<String, Integer> keysMap = new TreeMap<>(wordsCounter);
 
         System.out.println("Sort alphabetically:");
         for (Map.Entry<String, Integer> entry : keysMap.entrySet()) {
